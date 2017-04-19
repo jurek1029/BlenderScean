@@ -5,8 +5,7 @@ using namespace BasicEngine;
 int main(int argc, char **argv)
 {
 	Engine* engine = new Engine();
-	engine->Init();
-
+	engine->Init(2,0);
 	//local shaders
 	engine->GetShaderManager()->CreateProgram("cubeShader","..\\DrawCube\\Shaders\\VertexShader.shader","..\\DrawCube\\Shaders\\FragmentShader.shader");
 

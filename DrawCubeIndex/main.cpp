@@ -7,7 +7,7 @@ using namespace drawCubeIndex;
 int main(int argc, char **argv)
 {
 	Engine* engine = new Engine();
-	engine->Init();
+	engine->Init(3,3);
 
 	//local shaders
 	engine->GetShaderManager()->CreateProgram("cubeShader","..\\DrawCube\\Shaders\\VertexShader.shader","..\\DrawCube\\Shaders\\FragmentShader.shader");

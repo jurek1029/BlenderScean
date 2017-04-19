@@ -19,6 +19,7 @@ void InitGLUT::init(const Core::WindowInfo& windowInfo, const Core::ContextInfo&
 	}
 	else
 	{
+		printf("tu\n");
 		glutInitContextProfile(GLUT_COMPATIBILITY_PROFILE);
 	}
 
@@ -37,11 +38,12 @@ void InitGLUT::init(const Core::WindowInfo& windowInfo, const Core::ContextInfo&
 	glutCloseFunc(closeCallback);
 	glutDisplayFunc(displayCallback);
 	glutReshapeFunc(reshapeCallback);
-	
-	Init::InitGLEW::Init();
-	glDebugMessageCallback(DebugOutput::myCallback, NULL);								//Debuging
-	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, GL_TRUE);	//Debuging
 
+	if (Init::InitGLEW::Init())
+	{
+		glDebugMessageCallback(DebugOutput::myCallback, NULL);								//Debuging
+		glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, GL_TRUE);	//Debuging
+	}
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
 
 	printOpenGLInfo(windowInfo, contextInfo);

@@ -12,7 +12,7 @@ namespace BasicEngine
 			class InitGLEW
 			{
 			public:
-				static void Init();
+				static bool Init();
 			};
 		}
 	}

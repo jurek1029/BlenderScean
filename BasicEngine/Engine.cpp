@@ -1,6 +1,8 @@
 #include "Engine.h"
+#include <memory>
 using namespace BasicEngine;
 using namespace Core;
+
 
 Engine::Engine()
 {
@@ -8,21 +10,19 @@ Engine::Engine()
 }
 
 //You can set params for init
-bool Engine::Init()
+bool Engine::Init(int majorVersion, int minorVersion)
 {
 	WindowInfo window(std::string("OpenGL Scean"), 400, 200, 800, 600, true);
-	ContextInfo context(4, 5, true);
+	ContextInfo context(majorVersion, minorVersion, true);
 	FramebufferInfo frameBufferInfo(true, true, true, true);
-
 	Init::InitGLUT::init(window, context, frameBufferInfo);
 
 	mSceneManager = new Managers::SceneManager();
-
 	Init::InitGLUT::setListener(mSceneManager);
-
 	//this was created in  scene manager constructor, now copy here
 	mShaderManager = new Managers::ShaderManager();
-	mShaderManager->CreateProgram("colorShader","..\\BasicEngine\\Shaders\\VertexShader.shader", "..\\BasicEngine\\Shaders\\FragmentShader.shader");
+	mShaderManager->CreateProgram("colorShader", "..\\BasicEngine\\Shaders\\VertexShader.shader", "..\\BasicEngine\\Shaders\\FragmentShader.shader");
+	mLoadManager = new Managers::LoaderManager(this);
 
 	if (mSceneManager && mShaderManager)
 	{
@@ -36,6 +36,7 @@ bool Engine::Init()
 
 	return true;
 }
+
 
 //Create the loop
 void Engine::Run()
@@ -61,6 +62,11 @@ Managers::ModelsManager* Engine::GetModelsManager() const
 TextureLoader* Engine::GetTextureLoader() const
 {
 	return mTextureLoader;
+}
+
+Managers::LoaderManager* Engine::GetLoaderManager() const
+{
+	return mLoadManager;
 }
 
 Engine::~Engine()
