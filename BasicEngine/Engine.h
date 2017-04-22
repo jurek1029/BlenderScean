@@ -3,6 +3,7 @@
 #include "Managers\SceneManager.h"
 #include "Rendering\Texture\TextureLoader.h"
 #include "Managers\LoaderManager.h"
+#include "Managers\TextureManager.h"
 namespace BasicEngine
 {
 	class Engine
@@ -23,6 +24,7 @@ namespace BasicEngine
 		Managers::SceneManager*  GetSceneManager()  const;
 		Managers::ShaderManager* GetShaderManager() const;
 		Managers::ModelsManager* GetModelsManager() const;
+		Managers::TextureManager* GetTextureManager() const;
 		Managers::LoaderManager* GetLoaderManager() const;
 
 		TextureLoader* GetTextureLoader() const;
@@ -32,6 +34,7 @@ namespace BasicEngine
 		Managers::ShaderManager* mShaderManager;
 		Managers::ModelsManager* mModelsManager;
 		Managers::LoaderManager* mLoadManager;
+		Managers::TextureManager* mTextureManager;
 		TextureLoader* mTextureLoader;
 	};
 }

@@ -1,5 +1,4 @@
 #include "LoaderManager.h"
-#include "../Rendering/Models/Mesh.h"
 #include "../Engine.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,11 +7,11 @@
 using namespace BasicEngine::Managers;
 using namespace BasicEngine::Rendering::Models;
 
-LoaderManager::LoaderManager(BasicEngine::Engine* _engine): engine(std::move(_engine))
+LoaderManager::LoaderManager(TextureManager* textureManager) : textureManager(textureManager)
 {
 }
 
-LoaderManager::LoaderManager(BasicEngine::Engine* _engine,std::vector<std::string> _files):engine(std::move(_engine))
+LoaderManager::LoaderManager(TextureManager* textureManager, std::vector<std::string> _files) : textureManager(textureManager)
 {
 	files = _files;
 }
@@ -31,15 +30,15 @@ std::vector<std::string> LoaderManager::getFiles()
 	return files;
 }
 
+
 void LoaderManager::loadFile(std::string _file)
 {
 	FILE *file = new FILE();
-	Mesh model;
-	bool afterFirst = true;
+
 	char c;
 	int len;
 	int mask;
-	char* name, *texture;
+	char* name = nullptr, *texture = nullptr;
 
 	errno_t out = fopen_s(&file, _file.c_str(), "rb");
 	if (out != 0)
@@ -47,93 +46,109 @@ void LoaderManager::loadFile(std::string _file)
 		printf("errno %d /n", out);
 		return;
 	}
-	fread(&c, sizeof(char), 1, file);
-	printf("%c\n", c);
-	switch (c)
+	while (fread(&c, sizeof(char), 1, file) > 0)
 	{
-		case 'o':
-			fread(&mask, sizeof(int), 1, file);
-			printf("%d\n", mask);
-			fread(&len, sizeof(int), 1, file);
-			name = new char[len];
-			fread(&name, sizeof(char), len, file);
-			printf("%s\n", name);
-			if (afterFirst) engine->GetModelsManager()->SetModel(name, &model);
-			afterFirst = false;
-			model = Mesh();
-			break;
-		case 'c':
-			fread(&c, sizeof(char), 1, file);
-			switch (c)
-			{
-			case 'v':
+		switch (c)
+		{
+			case 'n':
 				fread(&len, sizeof(int), 1, file);
-				switch (mask)
+				meshes.reserve(len);
+				break;
+			case 'o':
+				meshes.emplace_back();
+
+				fread(&mask, sizeof(int), 1, file);
+				fread(&len, sizeof(int), 1, file);
+				name = new char[len];
+				fread(name, sizeof(char), len, file);
+
+				break;
+			case 'c':
+				fread(&c, sizeof(char), 1, file);
+				switch (c)
 				{
-				case 0:
+				case 'v':
+					fread(&len, sizeof(int), 1, file);
+					switch (mask)
+					{
+					case 0:
+					{
+						VertexFormatP* array = new VertexFormatP[len];
+						fread(array, sizeof(VertexFormatP), len, file);
+						meshes.back().Create<VertexFormatP>(name,array, len);
+						delete[] array;
+						delete[] name;
+						break;
+					}
+					case 1:
+					{
+						VertexFormatN* array = new VertexFormatN[len];
+						fread(array, sizeof(VertexFormatN), len, file);
+						meshes.back().Create<VertexFormatN>(name, array, len);
+						delete[] array;
+						delete[] name;
+						break;
+					}
+					case 2:
+					{
+						VertexFormatUV* array = new VertexFormatUV[len];
+						fread(array, sizeof(VertexFormatUV), len, file);
+						meshes.back().Create<VertexFormatUV>(name, array, len);
+						delete[] array;
+						delete[] name;
+						break;
+					}
+					case 3:
+					{
+						VertexFormatNUV* array = new VertexFormatNUV[len];
+						fread(array, sizeof(VertexFormatNUV), len, file);
+						meshes.back().Create<VertexFormatNUV>(name,array, len);
+						delete[] array;
+						delete[] name;
+						break;
+					}
+					}
+					break;
+				case 'f':
 				{
-					std::vector<VertexFormatP> ver(len);
-					fread(&ver, sizeof(VertexFormatP), len, file);
-					model.Create<VertexFormatP>(ver, mask);
+					fread(&len, sizeof(int), 1, file);
+					unsigned int* indicies = new unsigned int[len*3];
+					fread(indicies, sizeof(unsigned int), len * 3, file);
+					meshes.back().SetIndices(indicies,len*3);
+					delete[] indicies;
 					break;
 				}
-				case 1:
-				{
-					std::vector<VertexFormatN> ver(len);
-					fread(&ver, sizeof(VertexFormatN), len, file);
-					model.Create<VertexFormatN>(ver, mask);
+				case 't':
+					fread(&len, sizeof(int), 1, file);
+					texture = new char[len];
+					fread(texture, sizeof(char), len, file);
+					meshes.back().SetTexture(texture, textureManager->GetTexture(texture)); // tymczasowo zakladam ze texxturaa jest w tym samym katalogu
+					delete[] texture;
 					break;
-				}
-				case 2:
-				{
-					std::vector<VertexFormatUV> ver(len);
-					fread(&ver, sizeof(VertexFormatUV), len, file);
-					model.Create<VertexFormatUV>(ver, mask);
-					break;
-				}
-				case 3:
-				{
-					std::vector<VertexFormatNUV> ver(len);
-					fread(&ver, sizeof(VertexFormatNUV), len, file);
-					model.Create<VertexFormatNUV>(ver, mask);
-					break;
-				}
 				}
 				break;
-			case 'f':
+			case 'm':
 			{
-				fread(&len, sizeof(int), 1, file);
-				std::vector<int> indicies(len);
-				fread(&indicies, sizeof(int), len * 3, file);
-				model.SetIndices(indicies);
+				glm::vec3 dColor;
+				glm::vec4 sColor;
+				float alpha;
+				fread(&dColor, sizeof(glm::vec3), 1, file);
+				fread(&sColor, sizeof(glm::vec4), 1, file);
+				fread(&alpha, sizeof(float), 1, file);
+				meshes.back().SetMaterial(dColor, sColor, alpha);
 				break;
 			}
-			case 't':
-				fread(&len, sizeof(int), 1, file);
-				texture = new char[len];
-				fread(&texture, sizeof(char), len, file);
+			case 's':
+			{
+				glm::vec4 mirror;
+				fread(&mirror, sizeof(glm::vec4), 1, file);
+				meshes.back().SetMirrorParamters(mirror);
 				break;
 			}
-			break;
-		case 'm':
-		{
-			glm::vec3 dColor;
-			glm::vec4 sColor;
-			float alpha;
-			fread(&dColor, sizeof(glm::vec3), 1, file);
-			fread(&sColor, sizeof(glm::vec4), 1, file);
-			fread(&alpha, sizeof(float), 1, file);
-			model.SetMaterial(dColor, sColor, alpha);
-			break;
-		}
-		case 's':
-		{
-			glm::vec4 mirror;
-			fread(&mirror, sizeof(glm::vec4), 1, file);
-			model.SetMirrorParamters(mirror);
-			break;
 		}
 	}
+	fclose(file);
+	delete file;
 }
 
 void LoaderManager::loadFiles()
@@ -143,3 +158,12 @@ void LoaderManager::loadFiles()
 		loadFile(fileToLoad);
 	}
 }
+
+template< typename T >
+struct array_deleter
+{
+	void operator ()(T const * p)
+	{
+		delete[] p;
+	}
+};

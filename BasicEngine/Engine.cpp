@@ -22,7 +22,9 @@ bool Engine::Init(int majorVersion, int minorVersion)
 	//this was created in  scene manager constructor, now copy here
 	mShaderManager = new Managers::ShaderManager();
 	mShaderManager->CreateProgram("colorShader", "..\\BasicEngine\\Shaders\\VertexShader.shader", "..\\BasicEngine\\Shaders\\FragmentShader.shader");
-	mLoadManager = new Managers::LoaderManager(this);
+	mTextureManager = new Managers::TextureManager();
+	mTextureLoader = new TextureLoader();
+	mLoadManager = new Managers::LoaderManager(mTextureManager);
 
 	if (mSceneManager && mShaderManager)
 	{
@@ -69,6 +71,11 @@ Managers::LoaderManager* Engine::GetLoaderManager() const
 	return mLoadManager;
 }
 
+Managers::TextureManager* Engine::GetTextureManager() const
+{
+	return mTextureManager;
+}
+
 Engine::~Engine()
 {
 	if (mSceneManager)
@@ -79,4 +86,10 @@ Engine::~Engine()
 
 	if (mModelsManager)
 		delete mModelsManager;
+
+	if (mTextureManager)
+		delete mTextureManager;
+
+	if (mLoadManager)
+		delete mLoadManager;
 }

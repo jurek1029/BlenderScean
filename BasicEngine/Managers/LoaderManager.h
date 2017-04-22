@@ -1,6 +1,9 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "soil\SOIL.h"
+#include "..\Rendering\Models\Mesh.h"
+#include "TextureManager.h"
 
 namespace BasicEngine
 {
@@ -10,17 +13,18 @@ namespace BasicEngine
 		class LoaderManager
 		{
 		public:
-			LoaderManager(BasicEngine::Engine* _engine);
-			LoaderManager(BasicEngine::Engine* _engine, std::vector<std::string> _files);
+			LoaderManager(TextureManager* textureManager);
+			LoaderManager(TextureManager* textureManager,std::vector<std::string> _files);
 			~LoaderManager();
 
 			void loadFiles();
 			void loadFile(std::string file);
 			void setFiles(std::vector<std::string> _files);
 			std::vector<std::string> getFiles();
+			std::vector<Rendering::Models::Mesh> meshes;
 		private:
 			std::vector<std::string> files;
-			BasicEngine::Engine* engine;
+			Managers::TextureManager* textureManager;
 		};
 	}
 }

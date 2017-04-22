@@ -42,16 +42,16 @@ const GLuint Model::GetTexture(std::string textureName) const
 	return textures.at(textureName);
 }
 
-
 void Model::SetTexture(std::string textureName, GLuint texture)
 {
 	if (texture == 0) return;
 	textures[textureName] = texture;
 }
 
+
 void Model::Destroy()
 {
 	glDeleteVertexArrays(1, &vao);
-	glDeleteBuffers(vbos.size(), &vbos[0]);
+	glDeleteBuffers(vbos.size(), vbos.data());
 	vbos.clear();
 }

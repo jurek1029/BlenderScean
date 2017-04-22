@@ -41,6 +41,11 @@ void ModelsManager::DeleteModel(const std::string& gameModelName)
 	gameModelList.erase(gameModelName);
 }
 
+void ModelsManager::SetModel(const std::string& gameObjectName, IGameObject* gameObject)
+{
+	gameModelList[gameObjectName.c_str()] = gameObject;
+}
+
 const IGameObject& ModelsManager::GetModel(const std::string& gameModelName) const
 {
 	return (*gameModelList.at(gameModelName));

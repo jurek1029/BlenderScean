@@ -56,11 +56,6 @@ void SceneManager::setModelsManager(Managers::ModelsManager*& modelsManager)
 	this->modelsManager = modelsManager;
 }
 
-void ModelsManager::SetModel(const std::string& gameObjectName, IGameObject* gameObject)
-{
-	gameModelList[gameObjectName.c_str()] = gameObject;
-}
-
 glm::mat4& SceneManager::getViewMatrix()
 {
 	return viewMatrix;

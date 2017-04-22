@@ -19,7 +19,6 @@ void InitGLUT::init(const Core::WindowInfo& windowInfo, const Core::ContextInfo&
 	}
 	else
 	{
-		printf("tu\n");
 		glutInitContextProfile(GLUT_COMPATIBILITY_PROFILE);
 	}
 
