@@ -55,3 +55,8 @@ void Model::Destroy()
 	glDeleteBuffers(vbos.size(), vbos.data());
 	vbos.clear();
 }
+
+std::string Model::GetName()
+{
+	return name;
+}

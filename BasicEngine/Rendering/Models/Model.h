@@ -20,6 +20,7 @@ namespace BasicEngine
 				virtual void Update() override;
 				virtual void SetProgram(GLuint shaderName) override;
 				virtual void Destroy() override;
+				virtual std::string GetName() override;
 
 				virtual GLuint GetVao() const override;
 				virtual const std::vector<GLuint>& GetVbos() const override;
@@ -28,6 +29,7 @@ namespace BasicEngine
 				virtual void SetTexture(std::string textureName, GLuint texture) override;
 
 			protected:
+				std::string name;
 				GLuint vao;
 				GLuint program;
 				std::vector<GLuint> vbos;

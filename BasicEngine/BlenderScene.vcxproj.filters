@@ -67,6 +67,18 @@
     <ClCompile Include="Controls\CameraFPS.cpp">
       <Filter>Controls</Filter>
     </ClCompile>
+    <ClCompile Include="Managers\LoaderManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\TextureManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Models\MeshTextured.cpp">
+      <Filter>Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Models\Mesh.cpp">
+      <Filter>Rendering\Models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Managers\ShaderManager.h">
@@ -126,6 +138,18 @@
     </ClInclude>
     <ClInclude Include="Controls\CameraFPS.h">
       <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\LoaderManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\TextureManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Models\MeshTextured.h">
+      <Filter>Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Models\Mesh.h">
+      <Filter>Rendering\Models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

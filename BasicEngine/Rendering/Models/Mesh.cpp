@@ -15,7 +15,7 @@ void Mesh::Create(std::string _name, T* vertices, int lenght)
 	name = _name;
 	GLuint vao;
 	GLuint vbo;
-	
+
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 
@@ -43,13 +43,13 @@ void Mesh::Create(std::string _name, T* vertices, int lenght)
 		glEnableVertexAttribArray(1);
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexFormatNUV), (void*)(offsetof(VertexFormatNUV, VertexFormatNUV::texture)));
 	}
-	
+
 	glBindVertexArray(0);
 	this->vao = vao;
 	this->vbos.push_back(vbo);
 
 }
-template void Mesh::Create<VertexFormatP>(std::string name,VertexFormatP* vertices, int lenght);
+template void Mesh::Create<VertexFormatP>(std::string name, VertexFormatP* vertices, int lenght);
 template void Mesh::Create<VertexFormatN>(std::string name, VertexFormatN* vertices, int lenght);
 template void Mesh::Create<VertexFormatUV>(std::string name, VertexFormatUV* vertices, int lenght);
 template void Mesh::Create<VertexFormatNUV>(std::string name, VertexFormatNUV* vertices, int lenght);
@@ -62,11 +62,6 @@ void Mesh::Update()
 void Mesh::Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix)
 {
 	glUseProgram(program);
-
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, (*textures.begin()).second);
-	unsigned int textureLocation = glGetUniformLocation(program, "texture1");
-	glUniform1i(textureLocation, 0);
 
 	//glUniform3f(glGetUniformLocation(program, "rotation"), rotation_sin.x, rotation_sin.y, rotation_sin.z);
 	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &viewMatrix[0][0]);
@@ -99,7 +94,3 @@ void Mesh::SetMirrorParamters(glm::vec4 prams)
 	mirrorParameters = prams;
 }
 
-std::string Mesh::GetName()
-{
-	return name;
-}

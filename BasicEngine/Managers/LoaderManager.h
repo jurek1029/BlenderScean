@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include "soil\SOIL.h"
-#include "..\Rendering\Models\Mesh.h"
+#include "..\Rendering\Models\MeshTextured.h"
 #include "TextureManager.h"
 
 namespace BasicEngine
@@ -21,7 +21,7 @@ namespace BasicEngine
 			void loadFile(std::string file);
 			void setFiles(std::vector<std::string> _files);
 			std::vector<std::string> getFiles();
-			std::vector<Rendering::Models::Mesh> meshes;
+			std::vector<Rendering::Models::Model*> meshes;
 		private:
 			std::vector<std::string> files;
 			Managers::TextureManager* textureManager;
