@@ -95,6 +95,43 @@ GLuint ShaderManager::CreateProgram(const std::string& shaderName, const std::st
 	return programs[shaderName];
 }
 
+GLuint ShaderManager::CreateProgram(const std::string& shaderName, const std::string& vertexShaderFilename, const std::string& fragmentShaderFilename, const std::string& geometryShaderFileName)
+{
+	if (programs.find(shaderName) != programs.end())
+	{
+		std::cout << "ERROR shader with name: " << shaderName.c_str() << " alredy exist" << std::endl;
+		return 0;
+	}
+	std::string vertexShaderCode = ReadShader(vertexShaderFilename.c_str());
+	std::string fragmentShaderCode = ReadShader(fragmentShaderFilename.c_str());
+	std::string geometryShaderCode = ReadShader(geometryShaderFileName.c_str());
+
+	GLuint vertexShader = CreateShader(GL_VERTEX_SHADER, vertexShaderCode, "vertex shader");
+	GLuint fragmentShader = CreateShader(GL_FRAGMENT_SHADER, fragmentShaderCode, "fragment shader");
+	GLuint geometryShader = CreateShader(GL_GEOMETRY_SHADER, geometryShaderCode, "geometry shader");
+
+	int linkResult = 0;
+	GLuint program = glCreateProgram();
+	glAttachShader(program, vertexShader);
+	glAttachShader(program, fragmentShader);
+	glAttachShader(program, geometryShader);
+
+	glLinkProgram(program);
+	glGetProgramiv(program, GL_LINK_STATUS, &linkResult);
+	if (linkResult == GL_FALSE)
+	{
+		int infoLogLength = 0;
+		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &infoLogLength);
+		std::vector<char> programLog(infoLogLength);
+		glGetProgramInfoLog(program, infoLogLength, nullptr, &programLog[0]);
+		std::cout << "Shader Loader : LINK ERROR" << std::endl << &programLog[0] << std::endl;
+		return 0;
+	}
+
+	programs[shaderName] = program;
+	return programs[shaderName];
+}
+
 const GLuint ShaderManager::GetShader(const std::string& shaderName)
 {
 	if (programs.find(shaderName) == programs.end())

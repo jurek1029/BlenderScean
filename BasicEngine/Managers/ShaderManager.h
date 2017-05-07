@@ -17,7 +17,8 @@ namespace BasicEngine
 		public:
 			ShaderManager();
 			~ShaderManager();
-			GLuint CreateProgram(const std::string& shaderName, const std::string& VertexShaderFilename, const std::string& FragmentShaderFilename);
+			GLuint CreateProgram(const std::string& shaderName, const std::string& VertexShaderFilename, const std::string& FragmentShaderFilename); // shaderName to nazwa programu
+			GLuint CreateProgram(const std::string& shaderName, const std::string& VertexShaderFilename, const std::string& FragmentShaderFilename, const std::string& GeometryShaderFilename); // shaderName to nazwa programu
 			static const GLuint GetShader(const std::string&);
 			static const bool DeleteShader(const std::string&);
 

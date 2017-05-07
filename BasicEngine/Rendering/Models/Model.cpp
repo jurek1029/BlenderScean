@@ -18,29 +18,23 @@ void Model::Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix)
 {
 }
 
+void Model::DrawDebug()
+{
+}
+
 void Model::Update()
 {
 }
 
-void Model::SetProgram(GLuint program)
-{
-	this->program = program;
-}
+void Model::SetProgram(Shaders::IShader* program){this->program = program;}
 
-GLuint Model::GetVao() const
-{
-	return vao;
-}
+void Model::SetProgramDebug(Shaders::IShader* program){	this->programDebug = program;}
 
-const std::vector<GLuint>& Model::GetVbos() const
-{
-	return vbos;
-}
+GLuint Model::GetVao() const {return vao;}
 
-const GLuint Model::GetTexture(std::string textureName) const
-{
-	return textures.at(textureName);
-}
+const std::vector<GLuint>& Model::GetVbos() const {	return vbos; }
+
+const GLuint Model::GetTexture(std::string textureName) const {	return textures.at(textureName); }
 
 void Model::SetTexture(std::string textureName, GLuint texture)
 {
@@ -56,7 +50,4 @@ void Model::Destroy()
 	vbos.clear();
 }
 
-std::string Model::GetName()
-{
-	return name;
-}
+std::string Model::GetName() { return name;}

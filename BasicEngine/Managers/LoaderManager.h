@@ -3,6 +3,7 @@
 #include <vector>
 #include "soil\SOIL.h"
 #include "..\Rendering\Models\MeshTextured.h"
+#include "..\Rendering\Models\MeshFlatTextured.h"
 #include "TextureManager.h"
 
 namespace BasicEngine

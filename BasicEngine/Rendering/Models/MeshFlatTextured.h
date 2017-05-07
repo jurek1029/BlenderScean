@@ -1,5 +1,5 @@
 #pragma once
-#include "Mesh.h"
+#include "MeshFlat.h"
 #include "../VertexFormat.h"
 #include "../../Rendering/VertexFormat.h"
 #include <vector>
@@ -10,11 +10,11 @@ namespace BasicEngine
 	{
 		namespace Models
 		{
-			class MeshTextured : public Mesh
+			class MeshFlatTextured : public MeshFlat
 			{
 			public:
-				MeshTextured();
-				~MeshTextured();
+				MeshFlatTextured();
+				~MeshFlatTextured();
 				virtual void Draw()override final;
 				virtual void Update() override final;
 

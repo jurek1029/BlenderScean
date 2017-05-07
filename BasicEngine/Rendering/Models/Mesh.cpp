@@ -1,6 +1,11 @@
 #include "Mesh.h"
+#include "../../Engine.h"
+
 using namespace BasicEngine::Rendering;
 using namespace Models;
+
+
+//glm::vec3 BasicEngine::Controls::CameraFPS::eyeVector;
 
 Mesh::Mesh()
 {
@@ -28,8 +33,8 @@ void Mesh::Create(std::string _name, T* vertices, int lenght)
 
 	if (typeid(*vertices).name() == typeid(VertexFormatN).name())
 	{
-		//glEnableVertexAttribArray(2);
-		//glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormatN), (void*)(offsetof(VertexFormatN, VertexFormatN::normal)));
+		glEnableVertexAttribArray(2);
+		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormatN), (void*)(offsetof(VertexFormatN, VertexFormatN::normal)));
 	}
 	else if (typeid(*vertices).name() == typeid(VertexFormatUV).name())
 	{
@@ -37,11 +42,11 @@ void Mesh::Create(std::string _name, T* vertices, int lenght)
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexFormatUV), (void*)(offsetof(VertexFormatUV, VertexFormatUV::texture)));
 	}
 	else if (typeid(*vertices).name() == typeid(VertexFormatNUV).name())
-	{
-		//glEnableVertexAttribArray(2);
-		//glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormatNUV), (void*)(offsetof(VertexFormatNUV, VertexFormatNUV::normal)));
+	{		
 		glEnableVertexAttribArray(1);
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexFormatNUV), (void*)(offsetof(VertexFormatNUV, VertexFormatNUV::texture)));
+		glEnableVertexAttribArray(2);
+		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormatNUV), (void*)(offsetof(VertexFormatNUV, VertexFormatNUV::normal)));
 	}
 
 	glBindVertexArray(0);
@@ -59,13 +64,20 @@ void Mesh::Update()
 
 }
 
-void Mesh::Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix)
+void Mesh::DrawDebug()
 {
-	glUseProgram(program);
+	glBindVertexArray(vao);
+	glDrawElements(GL_TRIANGLES, indicesLength, GL_UNSIGNED_INT, 0);
+}
 
-	//glUniform3f(glGetUniformLocation(program, "rotation"), rotation_sin.x, rotation_sin.y, rotation_sin.z);
-	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &viewMatrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projectionMatrix[0][0]);
+void Mesh::Draw()
+{
+	// PerObject Values
+	glUniform3f(glGetUniformLocation(program->program, "material.ambient"), diffuseColor.x, diffuseColor.y, diffuseColor.z);
+	glUniform3f(glGetUniformLocation(program->program, "material.diffuse"), diffuseColor.x, diffuseColor.y, diffuseColor.z);
+	glUniform3f(glGetUniformLocation(program->program, "material.specular"), specularColor.x, specularColor.y, specularColor.z);
+	glUniform1f(glGetUniformLocation(program->program, "material.shininess"), specularColor.w);
+
 	glBindVertexArray(vao);
 	glDrawElements(GL_TRIANGLES, indicesLength, GL_UNSIGNED_INT, 0);
 }

@@ -4,6 +4,9 @@
 #include "Rendering\Texture\TextureLoader.h"
 #include "Managers\LoaderManager.h"
 #include "Managers\TextureManager.h"
+
+#define DEBUG false
+
 namespace BasicEngine
 {
 	class Engine

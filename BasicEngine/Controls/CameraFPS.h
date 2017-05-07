@@ -24,12 +24,12 @@ namespace BasicEngine
 			static void setMovmentSpeed(float _movmentSpeed);
 			static void setMouseXSensitivity(float _mouseXSensitivity);
 			static void setMouseYSensitivity(float _mouseYSensitivity);
+			static glm::vec3 eyeVector;
 
 		private:
 			static glm::mat4* viewMatrix;
 			static double keyYaw, keyPitch, keyRoll;
-			static glm::quat cameraQuat;
-			static glm::vec3 eyeVector;
+			static glm::quat cameraQuat;			
 			static bool isMousePressed;
 			static glm::vec2 mousePosition;
 			static float yaw, pitch, roll;

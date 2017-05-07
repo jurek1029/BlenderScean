@@ -30,6 +30,7 @@ bool Engine::Init(int majorVersion, int minorVersion)
 	{
 		mModelsManager = new Managers::ModelsManager();
 		mSceneManager->setModelsManager(mModelsManager);
+		mSceneManager->setShaderManager(mShaderManager);
 	}
 	else
 	{

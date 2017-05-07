@@ -37,7 +37,7 @@ void Quad::Update() {}
 
 void Quad::Draw()
 {
-	glUseProgram(program);
+	glUseProgram(program->program);
 	glBindVertexArray(vao);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }

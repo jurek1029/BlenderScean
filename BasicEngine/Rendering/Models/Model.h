@@ -2,6 +2,7 @@
 #include <vector>
 #include <map>
 #include "../IGameObject.h"
+#include "../../Shaders/IShader.h"
 
 namespace BasicEngine
 {
@@ -17,8 +18,10 @@ namespace BasicEngine
 
 				virtual void Draw() override;
 				virtual void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) override;
+				virtual void DrawDebug() override;
 				virtual void Update() override;
-				virtual void SetProgram(GLuint shaderName) override;
+				virtual void SetProgram(Shaders::IShader* shaderName) override;
+				virtual void SetProgramDebug(Shaders::IShader* shaderName);
 				virtual void Destroy() override;
 				virtual std::string GetName() override;
 
@@ -27,11 +30,10 @@ namespace BasicEngine
 
 				virtual const GLuint GetTexture(std::string textureName) const override;
 				virtual void SetTexture(std::string textureName, GLuint texture) override;
-
+				
 			protected:
 				std::string name;
 				GLuint vao;
-				GLuint program;
 				std::vector<GLuint> vbos;
 				std::map<std::string,GLuint> textures;
 			};

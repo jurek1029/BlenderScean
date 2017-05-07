@@ -60,18 +60,14 @@ void LoaderManager::loadFile(std::string _file)
 				fread(&mask, sizeof(int), 1, file);
 				switch (mask)
 				{
-				case 0:
-					meshes.emplace_back(new Mesh);
-					break;
-				case 1:
-					meshes.emplace_back(new Mesh);
-					break;
-				case 2:
-					meshes.emplace_back(new MeshTextured);
-					break;
-				case 3:
-					meshes.emplace_back(new MeshTextured);
-					break;
+				case 0: meshes.emplace_back(new Mesh);break;
+				case 1: meshes.emplace_back(new Mesh);break;
+				case 2: meshes.emplace_back(new MeshTextured);break;
+				case 3: meshes.emplace_back(new MeshTextured);break;
+				case 4:meshes.emplace_back(new MeshFlat);break;
+				case 5:meshes.emplace_back(new MeshFlat);break;
+				case 6:meshes.emplace_back(new MeshFlatTextured);break;
+				case 7:meshes.emplace_back(new MeshFlatTextured); break;
 				}
 				
 				fread(&len, sizeof(int), 1, file);
@@ -85,7 +81,8 @@ void LoaderManager::loadFile(std::string _file)
 				{
 				case 'v':
 					fread(&len, sizeof(int), 1, file);
-					switch (mask)
+					if (mask > 3) dynamic_cast<MeshFlat*>(meshes.back())->vertexCount = len;
+					switch (mask > 3 ? mask - 4 : mask)
 					{
 					case 0:
 					{

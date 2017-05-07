@@ -1,4 +1,6 @@
 #include "ModelsManager.h"
+#include "../Rendering/Models/Model.h"
+#include "../Engine.h"
 
 using namespace BasicEngine;
 using namespace Managers;
@@ -46,7 +48,7 @@ void ModelsManager::SetModel(const std::string& gameObjectName, IGameObject* gam
 	gameModelList[gameObjectName.c_str()] = gameObject;
 }
 
-const IGameObject& ModelsManager::GetModel(const std::string& gameModelName) const
+IGameObject& ModelsManager::GetModel(const std::string& gameModelName) const
 {
 	return (*gameModelList.at(gameModelName));
 }
@@ -71,6 +73,36 @@ void ModelsManager::Draw(const glm::mat4& projectionMatrix, const glm::mat4& vie
 {
 	for (auto model : gameModelList)
 	{
-		model.second->Draw(projectionMatrix, viewMatrix);
+		if (model.second->toDraw)
+		{
+			if (temp == model.second->program->program) model.second->Draw();
+			else
+			{
+				temp = model.second->program->program;
+				glUseProgram(temp);
+				model.second->program->configureShader(projectionMatrix, viewMatrix);
+				model.second->Draw();
+			}
+		}
 	}
+
+	if (DEBUG)
+	{
+		for (auto model : gameModelList)
+		{
+			if (model.second->toDraw)
+			{
+				if (temp == model.second->programDebug->program) model.second->DrawDebug();
+				else
+				{
+					temp = model.second->programDebug->program;
+					glUseProgram(temp);
+					model.second->programDebug->configureShader(projectionMatrix, viewMatrix);
+					model.second->DrawDebug();
+				}
+			}
+		}
+	}
+
 }
+

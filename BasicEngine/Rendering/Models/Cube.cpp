@@ -107,10 +107,10 @@ void Cube::Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix)
 
 	glm::vec3 rotation_sin = glm::vec3(rotation.x * PI / 180, rotation.y * PI / 180, rotation.z * PI / 180);
 
-	glUseProgram(program);
-	glUniform3f(glGetUniformLocation(program, "rotation"), rotation_sin.x, rotation_sin.y, rotation_sin.z);
-	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &viewMatrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projectionMatrix[0][0]);
+	glUseProgram(program->program);
+	glUniform3f(glGetUniformLocation(program->program, "rotation"), rotation_sin.x, rotation_sin.y, rotation_sin.z);
+	glUniformMatrix4fv(glGetUniformLocation(program->program, "view_matrix"), 1, false, &viewMatrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(program->program, "projection_matrix"), 1, false, &projectionMatrix[0][0]);
 	glBindVertexArray(vao);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 }

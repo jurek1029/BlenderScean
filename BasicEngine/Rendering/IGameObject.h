@@ -4,6 +4,8 @@
 #include <glew/glew.h>
 #include <freeglut/freeglut.h>
 #include "VertexFormat.h"
+#include "../Shaders/IShader.h"
+
 
 namespace BasicEngine
 {
@@ -16,8 +18,9 @@ namespace BasicEngine
 
 			virtual void Draw() = 0;
 			virtual void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) = 0;
+			virtual void DrawDebug() = 0;
 			virtual void Update() = 0;
-			virtual void SetProgram(GLuint shaderName) = 0;
+			virtual void SetProgram(Shaders::IShader* shaderName) = 0;
 			virtual void SetTexture(std::string textureName, GLuint texture) = 0;
 			virtual const GLuint GetTexture(std::string textureName) const = 0;
 			virtual void Destroy() = 0;
@@ -25,6 +28,10 @@ namespace BasicEngine
 
 			virtual GLuint GetVao() const = 0;
 			virtual const std::vector<GLuint>& GetVbos() const = 0;
+
+			Shaders::IShader* program;
+			Shaders::IShader* programDebug;
+			bool toDraw = true;
 		};
 		inline IGameObject::~IGameObject()
 		{

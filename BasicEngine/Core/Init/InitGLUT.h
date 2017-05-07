@@ -26,6 +26,8 @@ namespace BasicEngine
 
 				static void printOpenGLInfo(const Core::WindowInfo& windowInfo, const Core::ContextInfo& context);
 
+				static Core::WindowInfo getWindowInfo();
+
 			private:
 				static void idleCallback();
 				static void displayCallback();

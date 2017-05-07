@@ -1,5 +1,6 @@
 #pragma once
 #include "Model.h"
+#include "../../Controls/CameraFPS.h"
 #include "../VertexFormat.h"
 #include "../../Rendering/VertexFormat.h"
 #include <vector>
@@ -15,7 +16,8 @@ namespace BasicEngine
 			public:
 				Mesh();
 				~Mesh();
-				virtual void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix)override;
+				virtual void Draw()override;
+				virtual void DrawDebug() override;
 				virtual void Update() override;
 				template <class T> void Create(std::string name, T* vertices, int lenght);
 				void SetIndices(unsigned int* indices, int length);

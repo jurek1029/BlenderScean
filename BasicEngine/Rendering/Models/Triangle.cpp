@@ -39,7 +39,7 @@ void Triangle::Update()
 
 void Triangle::Draw()
 {
-	glUseProgram(program);
+	glUseProgram(program->program);
 	glBindVertexArray(vao);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 }

@@ -10,15 +10,17 @@ namespace BasicEngine
 	{
 		namespace Models
 		{
-			class MeshTextured : public Mesh
+			class MeshFlat : public Mesh
 			{
 			public:
-				MeshTextured();
-				~MeshTextured();
-				virtual void Draw()override final;
-				virtual void Update() override final;
-
+				MeshFlat();
+				~MeshFlat();
+				virtual void Draw()override;
+				virtual void DrawDebug() override;
+				virtual void Update() override;
+				int vertexCount;
 			private:
+				
 			};
 		}
 	}

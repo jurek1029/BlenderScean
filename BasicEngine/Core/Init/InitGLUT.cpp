@@ -123,3 +123,5 @@ void InitGLUT::printOpenGLInfo(const Core::WindowInfo& windowInfo, const Core::C
 	std::cout << "GLUT:\tRenderer : " << renderer << std::endl;
 	std::cout << "GLUT:\tOpenGl version: " << version << std::endl;
 }
+
+Core::WindowInfo InitGLUT::getWindowInfo() { return windowInformation; }
