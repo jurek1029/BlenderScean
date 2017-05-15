@@ -146,15 +146,20 @@
     <ClCompile Include="Rendering\Models\Mesh.cpp" />
     <ClCompile Include="Rendering\Models\MeshFlat.cpp" />
     <ClCompile Include="Rendering\Models\MeshFlatTextured.cpp" />
+    <ClCompile Include="Rendering\Models\MeshMirror.cpp" />
     <ClCompile Include="Rendering\Models\MeshTextured.cpp" />
+    <ClCompile Include="Rendering\Models\MirrorCube.cpp" />
     <ClCompile Include="Rendering\Models\Model.cpp" />
     <ClCompile Include="Rendering\Models\Quad.cpp" />
+    <ClCompile Include="Rendering\Models\SkyBox.cpp" />
     <ClCompile Include="Rendering\Models\Triangle.cpp" />
     <ClCompile Include="Rendering\Texture\TextureLoader.cpp" />
     <ClCompile Include="Shaders\IShader.cpp" />
     <ClCompile Include="Shaders\ShaderDebug.cpp" />
     <ClCompile Include="Shaders\ShaderDefault.cpp" />
+    <ClCompile Include="Shaders\ShaderMirrorCube.cpp" />
     <ClCompile Include="Shaders\ShaderShadow.cpp" />
+    <ClCompile Include="Shaders\ShaderSkyBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controls\CameraFPS.h" />
@@ -176,9 +181,12 @@
     <ClInclude Include="Rendering\Models\Mesh.h" />
     <ClInclude Include="Rendering\Models\MeshFlat.h" />
     <ClInclude Include="Rendering\Models\MeshFlatTextured.h" />
+    <ClInclude Include="Rendering\Models\MeshMirror.h" />
     <ClInclude Include="Rendering\Models\MeshTextured.h" />
+    <ClInclude Include="Rendering\Models\MirrorCube.h" />
     <ClInclude Include="Rendering\Models\Model.h" />
     <ClInclude Include="Rendering\Models\Quad.h" />
+    <ClInclude Include="Rendering\Models\SkyBox.h" />
     <ClInclude Include="Rendering\Models\Triangle.h" />
     <ClInclude Include="Rendering\Texture\BMPHeaders.h" />
     <ClInclude Include="Rendering\Texture\TextureLoader.h" />
@@ -186,7 +194,9 @@
     <ClInclude Include="Shaders\IShader.h" />
     <ClInclude Include="Shaders\ShaderDebug.h" />
     <ClInclude Include="Shaders\ShaderDefault.h" />
+    <ClInclude Include="Shaders\ShaderMirrorCube.h" />
     <ClInclude Include="Shaders\ShaderShadow.h" />
+    <ClInclude Include="Shaders\ShaderSkyBox.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

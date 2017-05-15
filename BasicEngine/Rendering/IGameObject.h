@@ -22,6 +22,7 @@ namespace BasicEngine
 			virtual void Update() = 0;
 			virtual void SetProgram(Shaders::IShader* shaderName) = 0;
 			virtual void SetTexture(std::string textureName, GLuint texture) = 0;
+			virtual void SetTexture(int index, GLuint texture) = 0;
 			virtual const GLuint GetTexture(std::string textureName) const = 0;
 			virtual void Destroy() = 0;
 			virtual std::string GetName() = 0;
@@ -32,6 +33,7 @@ namespace BasicEngine
 			Shaders::IShader* program;
 			Shaders::IShader* programDebug;
 			bool toDraw = true;
+			GLuint texture;
 		};
 		inline IGameObject::~IGameObject()
 		{

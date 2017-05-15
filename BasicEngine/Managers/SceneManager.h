@@ -27,12 +27,13 @@ namespace BasicEngine
 
 			GLuint depthMap;
 			glm::mat4 lightSpaceMatrix;
+			static glm::mat4 viewMatrix;
+			static glm::mat4 projectionMatrix;
 
 		private:
 			Managers::ModelsManager* modelsManager;
 			Managers::ShaderManager* shaderManager;
-			glm::mat4 viewMatrix;
-			glm::mat4 projectionMatrix;
+			
 			bool enabledShadows = true;
 			const GLuint SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
 			GLuint depthMapFBO;			

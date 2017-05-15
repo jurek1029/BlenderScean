@@ -97,6 +97,21 @@
     <ClCompile Include="Shaders\IShader.cpp">
       <Filter>Shaders</Filter>
     </ClCompile>
+    <ClCompile Include="Shaders\ShaderSkyBox.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Models\SkyBox.cpp">
+      <Filter>Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Models\MirrorCube.cpp">
+      <Filter>Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Shaders\ShaderMirrorCube.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Models\MeshMirror.cpp">
+      <Filter>Rendering\Models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Managers\ShaderManager.h">
@@ -186,6 +201,21 @@
     </ClInclude>
     <ClInclude Include="Shaders\ShaderShadow.h">
       <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Shaders\ShaderSkyBox.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Models\SkyBox.h">
+      <Filter>Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Models\MirrorCube.h">
+      <Filter>Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Shaders\ShaderMirrorCube.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Models\MeshMirror.h">
+      <Filter>Rendering\Models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

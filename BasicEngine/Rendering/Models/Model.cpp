@@ -42,6 +42,13 @@ void Model::SetTexture(std::string textureName, GLuint texture)
 	textures[textureName] = texture;
 }
 
+void Model::SetTexture(int index, GLuint texture)
+{
+	if (texture == 0) return;
+	auto iter = textures.begin();
+	std::advance(iter, index);
+	iter->second = texture;
+}
 
 void Model::Destroy()
 {

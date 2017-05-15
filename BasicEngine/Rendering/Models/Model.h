@@ -30,6 +30,7 @@ namespace BasicEngine
 
 				virtual const GLuint GetTexture(std::string textureName) const override;
 				virtual void SetTexture(std::string textureName, GLuint texture) override;
+				virtual void SetTexture(int index, GLuint texture) override;
 				
 			protected:
 				std::string name;
