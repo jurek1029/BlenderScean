@@ -22,6 +22,7 @@ namespace BasicEngine
 				virtual void Update() override final;
 
 			private:
+				bool wasRenderdThisFrame = false;
 				Managers::ModelsManager* modelsManager;
 				GLuint framebuffer;
 				GLuint texColorBuffer;

@@ -69,15 +69,15 @@ int main(int argc, char **argv)
 			else if (m->GetName() == "mirrorCube") {
 				m->toDraw = false;
 				m->SetProgram(shMir);
-				m->texture = cubemapTexture;
+				//m->texture = cubemapTexture;
 				dynamic_cast<Models::MirrorCube*>(m)->setModelsManager(engine->GetModelsManager());
 				dynamic_cast<Models::MirrorCube*>(m)->setCenter(0,5.51f,0);
 
 			}
-			else if (m->GetName() == "Sphere") {
-				
+			else if (m->GetName() == "mSphere") {
+				//m->toDraw = false;
 				m->SetProgram(shMir);
-				m->texture = cubemapTexture;
+				//m->texture = cubemapTexture;
 				dynamic_cast<Models::MeshMirror*>(m)->setModelsManager(engine->GetModelsManager());
 				dynamic_cast<Models::MeshMirror*>(m)->setCenter(-0.314f, 2.971f, -1.52f);
 

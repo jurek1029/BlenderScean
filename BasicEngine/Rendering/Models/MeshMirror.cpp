@@ -47,42 +47,44 @@ void MeshMirror::setCenter(float x, float y, float z) { xCenter = x; yCenter = y
 
 void MeshMirror::Update()
 {
-
+	wasRenderdThisFrame = false;
 }
 
 void MeshMirror::Draw()
 {
-
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-	glViewport(0, 0, textureFaceWidth, textureFaceHeight);
-
-	toDraw = false;
-	for (int i = 0; i < 6; i++)
+	if (!wasRenderdThisFrame)
 	{
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		switch (i) { // Magia 
-		case 0:
-			tempView = glm::lookAt(glm::vec3(xCenter, yCenter, zCenter), glm::vec3(xCenter, yCenter, zCenter - 10), glm::vec3(0, -1, 0));
-			break;
-		case 1:
-			tempView = glm::lookAt(glm::vec3(xCenter, yCenter, zCenter), glm::vec3(xCenter + 10, yCenter, zCenter), glm::vec3(0, -1, 0));
-			break;
-		case 2:
-			tempView = glm::lookAt(glm::vec3(xCenter, yCenter, zCenter), glm::vec3(xCenter - 10, yCenter, zCenter), glm::vec3(0, -1, 0));
-			break;
-		case 3:
-			tempView = glm::lookAt(glm::vec3(xCenter, yCenter, zCenter), glm::vec3(xCenter, yCenter + 10, zCenter), glm::vec3(0, 0, -1));
-			break;
-		case 4:
-			tempView = glm::lookAt(glm::vec3(xCenter, yCenter, zCenter), glm::vec3(xCenter, yCenter - 10, zCenter), glm::vec3(0, 0, -1));
-			break;
-		case 5:
-			tempView = glm::lookAt(glm::vec3(xCenter, yCenter, zCenter), glm::vec3(xCenter, yCenter, zCenter + 10), glm::vec3(0, -1, 0));
-			break;
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+		glViewport(0, 0, textureFaceWidth, textureFaceHeight);
+		toDraw = false;
+		for (int i = 0; i < 6; i++)
+		{
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			switch (i) { // Magia 
+			case 0:
+				tempView = glm::lookAt(glm::vec3(xCenter, yCenter, zCenter), glm::vec3(xCenter, yCenter, zCenter - 10), glm::vec3(0, -1, 0));
+				break;
+			case 1:
+				tempView = glm::lookAt(glm::vec3(xCenter, yCenter, zCenter), glm::vec3(xCenter + 10, yCenter, zCenter), glm::vec3(0, -1, 0));
+				break;
+			case 2:
+				tempView = glm::lookAt(glm::vec3(xCenter, yCenter, zCenter), glm::vec3(xCenter - 10, yCenter, zCenter), glm::vec3(0, -1, 0));
+				break;
+			case 3:
+				tempView = glm::lookAt(glm::vec3(xCenter, yCenter, zCenter), glm::vec3(xCenter, yCenter + 10, zCenter), glm::vec3(0, 0, -1));
+				break;
+			case 4:
+				tempView = glm::lookAt(glm::vec3(xCenter, yCenter, zCenter), glm::vec3(xCenter, yCenter - 10, zCenter), glm::vec3(0, 0, -1));
+				break;
+			case 5:
+				tempView = glm::lookAt(glm::vec3(xCenter, yCenter, zCenter), glm::vec3(xCenter, yCenter, zCenter + 10), glm::vec3(0, -1, 0));
+				break;
+			}
+			modelsManager->temp = 0;
+			modelsManager->Draw(tempProjection, tempView);
+			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, texColorBuffer, 0);
 		}
-		modelsManager->temp = 0;
-		modelsManager->Draw(tempProjection, tempView);
-		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, texColorBuffer, 0);
+		wasRenderdThisFrame = true;
 	}
 
 	modelsManager->temp = 0;
@@ -100,4 +102,6 @@ void MeshMirror::Draw()
 
 	glBindVertexArray(vao);
 	glDrawElements(GL_TRIANGLES, indicesLength, GL_UNSIGNED_INT, 0);
+	
+	
 }
