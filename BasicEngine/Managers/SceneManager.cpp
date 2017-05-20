@@ -1,6 +1,4 @@
-#include "SceneManager.h"
-#include "../Core/Init/InitGLUT.h"
-
+#include "../PCH.h"
 
 using namespace BasicEngine;
 using namespace Managers;

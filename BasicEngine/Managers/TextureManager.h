@@ -1,10 +1,5 @@
 #pragma once
-#include <glew\glew.h>
-#include <stdlib.h>
-#include <map>
-#include <vector>
-#include "soil\SOIL.h"
-
+#include "../PCH.h"
 
 namespace BasicEngine
 {

@@ -1,9 +1,5 @@
 #pragma once
-#include <glew\glew.h>
-#include <fstream>
-#include <iostream>
-#include <string>
-#include "BMPHeaders.h"
+#include "../../PCH.h"
 
 namespace BasicEngine
 {

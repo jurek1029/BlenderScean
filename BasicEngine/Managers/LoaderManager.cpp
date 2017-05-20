@@ -1,8 +1,4 @@
-#include "LoaderManager.h"
-#include "../Engine.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <vector>
+#include "../PCH.h"
 
 using namespace BasicEngine::Managers;
 using namespace BasicEngine::Rendering::Models;

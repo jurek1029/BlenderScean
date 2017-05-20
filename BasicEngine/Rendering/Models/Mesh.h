@@ -1,9 +1,5 @@
 #pragma once
-#include "Model.h"
-#include "../../Controls/CameraFPS.h"
-#include "../VertexFormat.h"
-#include "../../Rendering/VertexFormat.h"
-#include <vector>
+#include "../../PCH.h"
 
 namespace BasicEngine
 {

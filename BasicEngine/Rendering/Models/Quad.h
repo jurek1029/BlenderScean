@@ -1,5 +1,6 @@
 #pragma once
-#include "Model.h"
+#include "../../PCH.h"
+
 namespace BasicEngine
 {
 	namespace Rendering

@@ -1,9 +1,5 @@
 #pragma once
-#include "Core\Init\InitGLUT.h"
-#include "Managers\SceneManager.h"
-#include "Rendering\Texture\TextureLoader.h"
-#include "Managers\LoaderManager.h"
-#include "Managers\TextureManager.h"
+#include "PCH.h"
 
 #define DEBUG false
 

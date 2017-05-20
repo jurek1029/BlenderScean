@@ -1,7 +1,5 @@
 #pragma once
-#include "Model.h"
-#include<time.h>
-#include<stdarg.h>
+#include "../../PCH.h"
 
 namespace BasicEngine
 {

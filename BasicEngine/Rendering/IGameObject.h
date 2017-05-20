@@ -1,11 +1,5 @@
 #pragma once
-#include <vector>
-#include <iostream>
-#include <glew/glew.h>
-#include <freeglut/freeglut.h>
-#include "VertexFormat.h"
-#include "../Shaders/IShader.h"
-
+#include "../PCH.h"
 
 namespace BasicEngine
 {

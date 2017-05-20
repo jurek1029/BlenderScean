@@ -1,6 +1,5 @@
 #pragma once
-#include <glew/glew.h>
-#include <freeglut/freeglut.h>
+#include "../../PCH.h"
 
 namespace BasicEngine
 {

@@ -217,6 +217,16 @@
     <ClInclude Include="Rendering\Models\MeshMirror.h">
       <Filter>Rendering\Models</Filter>
     </ClInclude>
+    <ClInclude Include="Core\IObject.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\IComponent.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Shaders\ShaderComponent.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PCH.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

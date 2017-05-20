@@ -1,7 +1,7 @@
 #ifndef VectexFormat_H_
 #define VectexFormat_H_
-
-#include "glm\glm.hpp"
+#pragma once
+#include "../PCH.h"
 
 namespace BasicEngine
 {

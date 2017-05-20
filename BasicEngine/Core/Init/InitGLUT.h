@@ -1,11 +1,5 @@
 #pragma once
-#include "ContextInfo.h"
-#include "FramebufferInfo.h"
-#include "WindowInfo.h"
-#include <iostream>
-#include "InitGLEW.h"
-#include "IListener.h"
-#include "DebugOutput.h"
+#include "../../PCH.h"
 
 namespace BasicEngine
 {

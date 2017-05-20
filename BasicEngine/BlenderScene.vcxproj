@@ -163,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controls\CameraFPS.h" />
+    <ClInclude Include="Core\IComponent.h" />
     <ClInclude Include="Core\Init\ContextInfo.h" />
     <ClInclude Include="Core\Init\DebugOutput.h" />
     <ClInclude Include="Core\Init\FramebufferInfo.h" />
@@ -170,12 +171,14 @@
     <ClInclude Include="Core\Init\InitGLEW.h" />
     <ClInclude Include="Core\Init\InitGLUT.h" />
     <ClInclude Include="Core\Init\WindowInfo.h" />
+    <ClInclude Include="Core\IObject.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Managers\LoaderManager.h" />
     <ClInclude Include="Managers\ModelsManager.h" />
     <ClInclude Include="Managers\SceneManager.h" />
     <ClInclude Include="Managers\ShaderManager.h" />
     <ClInclude Include="Managers\TextureManager.h" />
+    <ClInclude Include="PCH.h" />
     <ClInclude Include="Rendering\IGameObject.h" />
     <ClInclude Include="Rendering\Models\Cube.h" />
     <ClInclude Include="Rendering\Models\Mesh.h" />
@@ -192,6 +195,7 @@
     <ClInclude Include="Rendering\Texture\TextureLoader.h" />
     <ClInclude Include="Rendering\VertexFormat.h" />
     <ClInclude Include="Shaders\IShader.h" />
+    <ClInclude Include="Shaders\ShaderComponent.h" />
     <ClInclude Include="Shaders\ShaderDebug.h" />
     <ClInclude Include="Shaders\ShaderDefault.h" />
     <ClInclude Include="Shaders\ShaderMirrorCube.h" />

@@ -1,13 +1,5 @@
 #pragma once
-#include <string>
-#include <vector>
-#include "soil\SOIL.h"
-#include "..\Rendering\Models\MeshTextured.h"
-#include "..\Rendering\Models\MeshFlatTextured.h"
-#include "..\Rendering\Models\SkyBox.h"
-#include "..\Rendering\Models\MirrorCube.h"
-#include "..\Rendering\Models\MeshMirror.h"
-#include "TextureManager.h"
+#include "../PCH.h"
 
 namespace BasicEngine
 {

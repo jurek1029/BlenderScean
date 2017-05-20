@@ -1,8 +1,5 @@
 #pragma once
-#include "Mesh.h"
-#include "../VertexFormat.h"
-#include "../../Rendering/VertexFormat.h"
-#include <vector>
+#include "../../PCH.h"
 
 namespace BasicEngine
 {

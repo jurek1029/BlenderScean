@@ -1,8 +1,5 @@
 #pragma once
-#include <vector>
-#include <map>
-#include "../IGameObject.h"
-#include "../../Shaders/IShader.h"
+#include "../../PCH.h"
 
 namespace BasicEngine
 {

@@ -1,9 +1,5 @@
 #pragma once
-#include "ShaderManager.h"
-#include "ModelsManager.h"
-#include "../Core/Init/IListener.h"
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
+#include "../PCH.h"
 
 namespace BasicEngine
 {

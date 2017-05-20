@@ -1,4 +1,4 @@
-#include "Triangle.h"
+#include "../../PCH.h"
 
 using namespace BasicEngine;
 using namespace Rendering;

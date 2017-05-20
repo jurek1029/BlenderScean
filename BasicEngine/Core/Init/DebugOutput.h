@@ -1,10 +1,5 @@
 #pragma once
-#include <string>
-#include <iostream>
-#include <glew/glew.h>
-#include <freeglut/freeglut.h>
-#include <assert.h>
-
+#include "../../PCH.h"
 using namespace std;
 namespace BasicEngine
 {

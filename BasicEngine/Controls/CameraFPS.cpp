@@ -1,5 +1,4 @@
-#include "CameraFPS.h"
-#include <iostream>
+#include "../PCH.h"
 
 using namespace BasicEngine::Controls;
 

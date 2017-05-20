@@ -1,14 +1,5 @@
 #pragma once
-#include <map>
-#include "ShaderManager.h"
-#include "../Rendering/IGameObject.h"
-#include "../Rendering/Models/Triangle.h"
-#include "../Rendering/Models/Quad.h"
-#include "../Rendering/Models/Cube.h"
-#include "../Rendering/Models/Mesh.h"
-#include "../Rendering/Models/MeshTextured.h"
-#include "../Rendering/Models/MeshFlat.h"
-#include "../Rendering/Models/MeshFlatTextured.h"
+#include "../PCH.h"
 
 using namespace BasicEngine::Rendering;
 
